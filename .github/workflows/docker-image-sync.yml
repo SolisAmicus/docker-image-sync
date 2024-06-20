@@ -1,0 +1,51 @@
+name: Docker
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Pull and Push Docker Images
+    runs-on: ubuntu-latest
+    env:
+      ALIYUN_REGISTRY: "${{ secrets.ALIYUN_REGISTRY }}"
+      ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAME_SPACE }}"
+      ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
+      ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+    steps:
+    - name: Display disk space before cleanup
+      run: df -hT
+
+    - name: Maximize build disk space
+      uses: easimon/maximize-build-space@v10
+      with:
+        root-reserve-mb: 2048
+        swap-size-mb: 128
+        remove-dotnet: "true"
+        remove-haskell: "true"
+        remove-android: "true"
+        remove-codeql: "true"
+        build-mount-path: "/var/lib/docker/"
+
+    - name: Restart Docker
+      run: sudo service docker restart
+
+    - name: Display disk space after cleanup
+      run: df -hT
+
+    - name: Checkout Code
+      uses: actions/checkout@v4.1.7
+
+    - name: Docker Setup Buildx
+      uses: docker/setup-buildx-action@v3.3.0
+
+    - name: Build and push image Aliyun
+      run: |
+        docker login -u $ALIYUN_REGISTRY_USER -p $ALIYUN_REGISTRY_PASSWORD $ALIYUN_REGISTRY
+        chmod +x scripts/*.sh
+        ./scripts/process_images.sh "$ALIYUN_REGISTRY" "$ALIYUN_NAME_SPACE"
+
+        echo "Disk space after cleanup:"
+        df -hT
