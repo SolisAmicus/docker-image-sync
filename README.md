@@ -59,7 +59,15 @@ nginx
 
 After committing the file, GitHub Actions will automatically start the build process.
 
+<div align='center'>
+  <img src="./img/5.png" style="zoom:50%;" />
+</div>
 
+Check Alibaba Cloud Container Registry and you will see that the corresponding image has been generated.
+
+<div align='center'>
+  <img src="./img/6.png" style="zoom:50%;" />
+</div>
 
 ## Use Docker Images
 
