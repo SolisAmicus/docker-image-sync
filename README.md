@@ -16,8 +16,8 @@ Enable a personal instance，get the following environment parameters for config
 
 - <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_PASSWORD</span>：Password，Set when creating a personal instance.
 - <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：namespace, `solisamicus-images`.
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：Username, `solisamicus`.
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：Repository Address, `registry.cn-wulanchabu.aliyuncs.com`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_USER</span>：Username, `solisamicus`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY</span>：Repository Address, `registry.cn-wulanchabu.aliyuncs.com`.
 
 ## Fork Project
 
