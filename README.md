@@ -14,10 +14,10 @@ Enable a personal instance，get the following environment parameters for config
   <img src="./img/2.png" style="zoom:50%;" />
 </div>
 
-- $\text {ALIYUN_REGISTRY_PASSWORD}$：Password，Set when creating a personal instance.
-- $\text {ALIYUN_NAME_SPACE}$：namespace, `solisamicus-images`.
-- $\text {ALIYUN_REGISTRY_USER}$：Username, `solisamicus`.
-- $\text {ALIYUN_REGISTRY}$：Repository Address, `registry.cn-wulanchabu.aliyuncs.com`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_PASSWORD</span>：Password，Set when creating a personal instance.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：namespace, `solisamicus-images`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_USER</span>：Username, `solisamicus`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY</span>：Repository Address, `registry.cn-wulanchabu.aliyuncs.com`.
 
 ## Fork Project
 
