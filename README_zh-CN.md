@@ -1,33 +1,33 @@
 # Docker Image Sync
 
-[简体中文](./README_zh-CN.md) | English
+简体中文 | [English](./README.md)
 
-## Configure Alibaba Cloud Container Registry
+## 配置阿里云镜像服务
 
-Log in to Alibaba Cloud Container Registry：https://cr.console.aliyun.com/
+登录阿里云镜像服务：https://cr.console.aliyun.com/
 
-Enable a personal instance，get the following environment parameters for configuration：
+开启个人示例, 并从配置中取得需要的环境变量：
 
 <div align='center'>
   <img src="./img/1.png" style="zoom:50%;" />
 </div>
 
+
 <div align='center'>
   <img src="./img/2.png" style="zoom:50%;" />
 </div>
 
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_PASSWORD</span>：Password，Set when creating a personal instance.
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：namespace, `solisamicus-images`.
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_USER</span>：Username, `solisamicus`.
-- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY</span>：Repository Address, `registry.cn-wulanchabu.aliyuncs.com`.
 
-## Fork Project
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_PASSWORD</span>：固定密码，新建个人示例时创建.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_NAME_SPACE</span>：命名空间, `solisamicus-images`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY_USER</span>：用户名, `solisamicus`.
+- <span style="font-family: 'Times New Roman', Times, serif;">ALIYUN_REGISTRY</span>：仓库地址, `registry.cn-wulanchabu.aliyuncs.com`.
 
-Fork this repository.
+## Fork 项目
 
-## Enable GitHub Actions
+Fork 本仓库.
 
-Enable GitHub Actions.
+## 开启Github Actions
 
 `Settings` -> `Secrets and variables` -> `Actions` -> `New Repository Secret`.
 
@@ -35,7 +35,8 @@ Enable GitHub Actions.
   <img src="./img/3.png" style="zoom:50%;" />
 </div>
 
-Add the four values obtained in the previous step as environment variables.
+
+添加在上一步获取的四个环境变量.
 
 > ALIYUN_NAME_SPACE
 >
@@ -49,41 +50,43 @@ Add the four values obtained in the previous step as environment variables.
   <img src="./img/4.png" style="zoom:50%;" />
 </div>
 
-### Add Docker Images
 
-Open the `images.txt` file and add the images you want.（Use `#` at the beginning of a line to add comments.）
+### 添加 Docker 镜像
 
-:star:Example：
+打开文件 `images.txt`  并添加你想要同步的仓库（使用`#` 添加注释）
+
+:star:示例：
 
 ```
 nginx
 ```
 
-After committing the file, GitHub Actions will automatically start the build process.
+在文件成功提交后, Github Actions 将会自动开始构建过程.
 
 <div align='center'>
   <img src="./img/5.png" style="zoom:50%;" />
 </div>
 
-Check Alibaba Cloud Container Registry and you will see that the corresponding image has been generated.
+查看阿里云容器镜像服务后你会看到同步过来的docker镜像
 
 <div align='center'>
   <img src="./img/6.png" style="zoom:50%;" />
 </div>
 
-## Use Docker Images
 
-Return to Alibaba Cloud Container Registry and check the status of your images.
+## 使用 Docker 镜像
 
-> You can set images to public to allow pulling without login.
+返回阿里云镜像服务并检查镜像状态
 
-Pull the image on your server in China
+> 你可以将镜像设为公开, 这样不用登录也能拉取此镜像了
+
+在国内服务器上拉取镜像
 
 ```shell
 docker pull ${ALIYUN_REGISTRY}/${ALIYUN_NAME_SPACE}/nginx
 ```
 
-:star:Example：
+示例：
 
 ```
 docker pull registry.cn-wulanchabu.aliyuncs.com/solisamicus-images/nginx
@@ -111,7 +114,7 @@ registry.cn-wulanchabu.aliyuncs.com/solisamicus-images/nginx:latest
 --platform=linux/amd64 nginx:1.25.3
 ```
 
-This will result in the image being named with the prefix indicating the architecture:
+这会导致镜像名含有架构前缀:
 
 ```shell
 registry.cn-wulanchabu.aliyuncs.com/solisamicus-images/linux_amd64_nginx:1.25.3
@@ -124,7 +127,7 @@ namespace1/nginx:1.25.3
 namespace2/nginx:1.25.3
 ```
 
-This will result in the images being named with the namespace as a prefix to avoid conflicts:
+这会导致镜像名前缀为命名空间以避免冲突:
 
 ```shell
 registry.cn-wulanchabu.aliyuncs.com/solisamicus/namespace1_nginx:1.25.3
