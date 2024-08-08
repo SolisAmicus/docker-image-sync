@@ -1,4 +1,3 @@
 nginx
 redis
 mysql
-nacos
